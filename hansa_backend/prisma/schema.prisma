@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Bolt {
+  id Int @id @default(autoincrement())
+  nev String @db.VarChar(255)
+  partnerid Int
+  vasarlasok Vasarlas[]
+}
+
+model Vasarlas {
+  id Int @id @default(autoincrement())
+  esemenydatumido DateTime @default(now())
+  vasarlasosszeg Float
+  penztargepazonosito Int
+  partnerid Int
+  bolt Bolt @relation(fields: [boltid], references: [id])
+  boltid Int
+  vasarlastetelek Vasarlas_tetel[]
+}
+
+model Vasarlas_tetel {
+  id Int @id @default(autoincrement())
+  partnerctid Int @unique
+  cikk Cikkek @relation(fields: [partnerctid], references: [id])
+  vasarlas Vasarlas @relation(fields: [vasarlasid], references: [id])
+  vasarlasid Int
+  mennyiseg Float
+  brutto Float
+  partnerid Int
+}
+
+model Cikkek {
+  id Int @id @default(autoincrement())
+  cikkszam String @db.VarChar(255)
+  vonalkod String @db.VarChar(255)
+  nev String @db.VarChar(255)
+  mennyisegiegyseg String @db.VarChar(255)
+  nettoegysegar Float
+  verzio Int
+  partnerid Int
+  vasarlastetel Vasarlas_tetel?
+}
