@@ -30,7 +30,7 @@ model Vasarlas {
 
 model Vasarlas_tetel {
   id Int @id @default(autoincrement())
-  partnerctid Int @unique
+  partnerctid Int
   cikk Cikkek @relation(fields: [partnerctid], references: [id])
   vasarlas Vasarlas @relation(fields: [vasarlasid], references: [id])
   vasarlasid Int
@@ -48,5 +48,5 @@ model Cikkek {
   nettoegysegar Float
   verzio Int
   partnerid Int
-  vasarlastetel Vasarlas_tetel?
+  vasarlastetel Vasarlas_tetel[]
 }
