@@ -3,7 +3,10 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 
-const indexRouter = require('./routes/index');
+const boltRouter = require('./routes/boltRouter');
+const cikkekRouter = require('./routes/cikkekRouter');
+const vasarlasRouter = require('./routes/vasarlasRouter');
+const tetelRouter = require('./routes/tetelRouter');
 
 
 const app = express();
@@ -21,6 +24,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 
-app.use('/', indexRouter);
+app.use('/bolt', boltRouter);
+app.use('/cikkek', cikkekRouter);
+app.use('/vasarlas', vasarlasRouter);
+app.use('/tetel', tetelRouter);
 
 module.exports = app;
