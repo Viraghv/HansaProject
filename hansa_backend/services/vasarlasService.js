@@ -2,13 +2,20 @@ const {checkRequiredParameters, checkParamValues} = require('../validators/listi
 const vasarlasRepository = require('../repositories/vasarlasRepository')
 const BadRequest = require("../exceptions/BadRequest");
 
-const tableColumns = ["id", "esemenydatumido", "vasarlasosszeg", "penztargepazonosito", "partnerid", "bolt.nev"];
+const tableColumns = ["id", "esemenydatumido", "vasarlasosszeg", "penztargepazonosito", "partnerid", "boltnev"];
 
 module.exports.list = async (filterData) => {
     checkRequiredParameters(filterData);
     checkParamValues(filterData, tableColumns);
 
-    return await vasarlasRepository.list(filterData);
+    let list= await vasarlasRepository.list(filterData);
+
+    list.result.map(item =>  {
+        item.boltnev = item.bolt.nev;
+        delete item.bolt;
+    })
+
+    return list;
 }
 
 module.exports.add = async (vasarlasData) => {

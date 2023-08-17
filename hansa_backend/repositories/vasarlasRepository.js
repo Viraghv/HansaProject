@@ -21,18 +21,19 @@ module.exports.list = async (filterData) => {
                     equals: new Date(String(filterData.searchTerm)),
                 }
             }
-        } else if(filterData.searchColumn === "bolt.nev") {
+        } else if(filterData.searchColumn === "boltnev") {
             whereObject = {
                 bolt: {
                     nev: {
-                        contains: String(filterData.searchTerm)
+                        contains: String(filterData.searchTerm),
+                        mode: 'insensitive',
                     }
                 }
             }
         }
 
     if(filterData.orderBy !== "" && filterData.orderType !== ""){
-        if(filterData.orderBy === "bolt.nev"){
+        if(filterData.orderBy === "boltnev"){
             orderByObject = {
                 bolt: {
                     nev: filterData.orderType

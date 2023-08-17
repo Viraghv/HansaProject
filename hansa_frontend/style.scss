@@ -1,0 +1,30 @@
+:root {
+    --mainblue: #3498db;
+    --hovermainblue: #2988c8;
+    --lightblue: aliceblue;
+    --lightgrey: #888888;
+}
+
+.pagination-container {
+    display: flex;
+    column-gap: 0;
+}
+.paginate-buttons {
+    height: 45px;
+    width: 45px;
+    cursor: pointer;
+    background-color: white;
+    border: none;
+    color: black;
+}
+.paginate-buttons:hover {
+    background-color: #d8d8d8;
+}
+.active-page {
+    background-color: var(--mainblue);
+    border: 1px solid var(--mainblue);
+    color: white;
+}
+.active-page:hover {
+    background-color: var(--hovermainblue);
+}
