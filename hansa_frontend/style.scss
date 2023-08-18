@@ -5,6 +5,10 @@
     --lightgrey: #888888;
 }
 
+.Vue-Toastification__toast-body.fixed-width{
+    width: 200px;
+}
+
 .pagination-container {
     display: flex;
     column-gap: 0;
