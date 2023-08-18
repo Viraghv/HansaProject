@@ -25,6 +25,7 @@ function checkAddParams(tetelData) {
        !tetelData.hasOwnProperty("mennyiseg") || !tetelData.hasOwnProperty("brutto") ||
        !tetelData.hasOwnProperty("partnerid")){
 
+        console.log(tetelData)
         throw new BadRequest("Request body does not have the required parameters.");
     }
 

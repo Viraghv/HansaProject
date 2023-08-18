@@ -10,10 +10,17 @@ module.exports.list = async (filterData) => {
 
     let list= await vasarlasRepository.list(filterData);
 
-    list.result.map(item =>  {
-        item.boltnev = item.bolt.nev;
-        delete item.bolt;
-    })
+    if(filterData.page === null) {
+        list.map(item =>  {
+            item.boltnev = item.bolt.nev;
+            delete item.bolt;
+        })
+    } else {
+        list.result.map(item =>  {
+            item.boltnev = item.bolt.nev;
+            delete item.bolt;
+        })
+    }
 
     return list;
 }

@@ -10,4 +10,12 @@ router.post('/list',  vasarlasController.list);
 // params: esemenydatumido, vasarlasosszeg, penztargepazonosito, partnerid, boltid
 router.post('/add', vasarlasController.add);
 
+// exports the filtered records into an .xlsx file
+// params: orderBy, orderType, searchColumn, searchTerm
+router.post("/export/xlsx", vasarlasController.exportToXLSX);
+
+// exports the filtered records into an .csv file
+// params: orderBy, orderType, searchColumn, searchTerm
+router.post("/export/csv", vasarlasController.exportToCSV);
+
 module.exports = router;
