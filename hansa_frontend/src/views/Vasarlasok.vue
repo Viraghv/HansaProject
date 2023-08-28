@@ -369,6 +369,7 @@ export default {
             this.filterObj.searchTerm = searchObj.searchTerm;
             this.currentPage = 1;
 
+            this.contentVisible.fill(false);
             this.initVasarlasok();
             this.currentFilters = this.filterObj;
         },
